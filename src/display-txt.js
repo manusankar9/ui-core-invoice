@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
-import CartItemsCtx from './cart-items-context';
+import {Consumer} from './cart-items-context';
 
 export default () => {
-    const {cnt, setCnt} = useContext(CartItemsCtx)
+    const {cnt, setCnt} = useContext(Consumer)
 
     return (
         <div>
