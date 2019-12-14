@@ -5,9 +5,11 @@ import Add from './add';
 import Welcome from './welcome';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHome } from "@fortawesome/free-solid-svg-icons";
-import {Provider} from './userContext';
+import UserContext from './user-context';
 import initFontAwesome from "./utils/initFontAwesome";
 import DisplayTxt from './display-txt.js';
+import UserDetailsContext from './user-details-context';
+import FullProfile from './full-profile'; 
 initFontAwesome();
 
 const Information = () => {
@@ -15,9 +17,15 @@ const Information = () => {
 
     return (
         <div>
-            <Provider value={{cnt}}>
+            <UserDetailsContext.Provider value = {{name:"manasa",setcnt,cnt}}>
+
+
+            <UserContext.Provider value={{cnt}}>
                 <DisplayTxt />
-            </Provider>
+                <FullProfile />
+            </UserContext.Provider>
+
+            </UserDetailsContext.Provider>
         </div>
     )
 }

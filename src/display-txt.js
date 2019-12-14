@@ -1,12 +1,18 @@
 import React, { useContext } from 'react';
-import { Consumer } from './userContext';
+import UserContext from './user-context';
 
 export default () => {
-    const { cnt } = useContext(Consumer);
+    const { cnt } = useContext(UserContext.Consumer);
+
 
     return (
         <div>
-            <p>dsfsd {cnt}</p>
+            {
+                cnt > 3 ? <b>im tired</b> : <div>
+                    <p>display text{cnt} </p>
+
+                </div>
+            }
         </div>
     )
 }
