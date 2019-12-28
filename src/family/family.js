@@ -1,10 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import CheckBox from './checkBox';
 import './style.css';
+import fetchHelper from './fetchHelper';
 
-const checkBoxList = [
-    "myFamily", "parents", "in_laws", "sister", "friends"
-]
 const familyData = {
     myFamily: [
         { name: "siva", age: 36, parent: "myFamily" },
@@ -31,13 +29,32 @@ const familyData = {
 
     ],
     selected_checkBox: [],
-    seletedItems: {}
+    seletedItems: {},
+    checkBoxList: []
 
 
 }
 
+
+const getFamilyList = async (url) => {
+
+    let x = await fetchHelper(url);
+    return x;
+}
+
+
 export default () => {
     const [data, updateData] = useState(familyData);
+
+    useEffect(() => {
+        let url = 'https://my-json-server.typicode.com/guntupallikoteswararao2016/demo/family'
+        const checkBoxList = getFamilyList(url);
+        checkBoxList.then(datas => {
+            updateData({ ...data, checkBoxList: [...datas] });
+        })
+
+    }, []);
+
     let ms;
     const changeHandler = (item, isSelect) => {
         //console.log("changeHandler", a, isSelect);
@@ -63,12 +80,12 @@ export default () => {
             // <pre>{JSON.stringify(data, null, 2)}</pre>
         }
         {
-            checkBoxList.map((item) =>
+            data.checkBoxList.map((item) =>
                 <CheckBox label={item} onChangeHandler={(isSelect) => changeHandler(item, isSelect)} />
 
             )
         }
-
+        sdfsdfsdf
         {
             Object.entries(data.seletedItems).map(([a, b]) =>
                 <div className="one">

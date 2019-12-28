@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Family from './family/family';
 import Apple from './learn-ui/project-apple';
+import Familypract from './family_pract/familyPract';
 
 
 const initData = {
@@ -66,6 +67,7 @@ export default () => {
 
 			<Apple />
 			<Family />
+			<Familypract />
 		</div>
 	);
 }
